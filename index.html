@@ -3,424 +3,666 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
-<title>Farmaci perioperatori nell'anziano fragile</title>
+<title>Prehabilitation: scale di valutazione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f3f6f9; --surface:#ffffff; --ink:#14212b; --muted:#566673; --line:#d6dfe6;
-  --accent:#12507a; --accent-soft:#e3eef6; --on-accent:#ffffff;
-  --stop:#a8231c; --stop-bg:#fdecea; --ind:#85530a; --ind-bg:#fff3d9; --ok:#17653a; --ok-bg:#e4f3ea;
-  --flag:#5e2a8c; --flag-bg:#efe6f7;
+  --bg:#EDF2F3;--surface:#FFFFFF;--ink:#14262D;--muted:#566B73;--line:#D3DEE1;
+  --brand:#0B6577;--brand-ink:#FFFFFF;--sel:#D9EEF2;
+  --ok:#1B7550;--warn:#9A5B00;--bad:#B3261E;--info:#0B6577;--na:#6B7C83;
+  --ok-bg:#E2F2EA;--warn-bg:#FAEDD3;--bad-bg:#FBE3E0;--info-bg:#D9EEF2;--na-bg:#E6ECEE;
+  color-scheme:light;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0f171d; --surface:#17222b; --ink:#e6edf2; --muted:#9db0bd; --line:#2a3b47;
-    --accent:#7fb8e0; --accent-soft:#1d3342; --on-accent:#0f171d;
-    --stop:#ff9c93; --stop-bg:#3a1e1c; --ind:#f2c46d; --ind-bg:#372b12; --ok:#7fd6a1; --ok-bg:#16301f;
-    --flag:#d2b0f0; --flag-bg:#2d2038;
+    --bg:#0D1A1F;--surface:#14252B;--ink:#E4EDEF;--muted:#9DB0B7;--line:#29404A;
+    --brand:#62C3D6;--brand-ink:#04222A;--sel:#18404B;
+    --ok:#62CC9B;--warn:#EDB654;--bad:#FF8F85;--info:#62C3D6;--na:#8CA0A8;
+    --ok-bg:#12352A;--warn-bg:#3A2E12;--bad-bg:#3C1D1B;--info-bg:#16393F;--na-bg:#1D3139;
+    color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0f171d; --surface:#17222b; --ink:#e6edf2; --muted:#9db0bd; --line:#2a3b47;
-  --accent:#7fb8e0; --accent-soft:#1d3342; --on-accent:#0f171d;
-  --stop:#ff9c93; --stop-bg:#3a1e1c; --ind:#f2c46d; --ind-bg:#372b12; --ok:#7fd6a1; --ok-bg:#16301f;
-  --flag:#d2b0f0; --flag-bg:#2d2038;
+  --bg:#0D1A1F;--surface:#14252B;--ink:#E4EDEF;--muted:#9DB0B7;--line:#29404A;
+  --brand:#62C3D6;--brand-ink:#04222A;--sel:#18404B;
+  --ok:#62CC9B;--warn:#EDB654;--bad:#FF8F85;--info:#62C3D6;--na:#8CA0A8;
+  --ok-bg:#12352A;--warn-bg:#3A2E12;--bad-bg:#3C1D1B;--info-bg:#16393F;--na-bg:#1D3139;
+  color-scheme:dark;
 }
-html{scroll-padding-top:env(safe-area-inset-top,0px);}
-*,*::before,*::after{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%;}
-.wrap{max-width:1100px;margin:0 auto;padding:16px 14px 48px;}
-header h1{font-size:1.35rem;line-height:1.25;margin:4px 0 6px;letter-spacing:-.01em;}
-header p{margin:0;color:var(--muted);font-size:.93rem;max-width:62ch;}
-.warn{margin:12px 0 0;padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--ind);background:var(--surface);border-radius:8px;font-size:.86rem;color:var(--muted);}
-.layout{display:grid;gap:16px;margin-top:16px;}
-@media(min-width:900px){.layout{grid-template-columns:400px 1fr;align-items:start;} .inputs{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;}}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;}
-.panel h2{font-size:1.02rem;margin:0 0 10px;}
-.panel + .panel{margin-top:12px;}
-fieldset{border:0;margin:0;padding:0;}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-label.f{display:block;font-size:.84rem;color:var(--muted);margin-bottom:10px;}
-label.f span{display:block;margin-bottom:3px;}
-input[type=number],select,input[type=search]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;min-height:44px;}
-input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible,.chip input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px;}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;margin:8px 0;min-height:32px;}
-.check input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--accent);}
-.group{margin-top:14px;}
-.group h3{font-size:.86rem;margin:0 0 6px;color:var(--muted);font-weight:600;}
-.chips{display:flex;flex-wrap:wrap;gap:6px;}
-.chip{position:relative;}
-.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;}
-.chip span{display:inline-block;padding:8px 11px;border:1px solid var(--line);border-radius:999px;font-size:.88rem;background:var(--bg);min-height:38px;line-height:1.35;}
-.chip input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600;}
-.chip.hide{display:none;}
-.sub{margin:10px 0 0;padding:10px;border-radius:8px;background:var(--accent-soft);}
-.hint{font-size:.8rem;color:var(--muted);margin:4px 0 0;}
-.pathway{display:grid;gap:8px;}
-.step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;}
-.step .n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;font-size:.88rem;}
-.step.alert .n{background:var(--stop);color:var(--surface);}
-.step b{display:block;font-size:.92rem;}
-.step p{margin:2px 0 0;font-size:.88rem;color:var(--muted);}
-.step .line{display:none;}
-.summary{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;}
-.pill{padding:6px 12px;border-radius:999px;font-weight:700;font-size:.86rem;}
-.pill.stop{background:var(--stop-bg);color:var(--stop);} .pill.ind{background:var(--ind-bg);color:var(--ind);} .pill.ok{background:var(--ok-bg);color:var(--ok);} .pill.flag{background:var(--flag-bg);color:var(--flag);}
-.lane{margin-top:14px;}
-.lane > h3{font-size:.95rem;margin:0 0 8px;padding-left:10px;border-left:5px solid;}
-.lane.stop > h3{border-color:var(--stop);color:var(--stop);} .lane.ind > h3{border-color:var(--ind);color:var(--ind);} .lane.ok > h3{border-color:var(--ok);color:var(--ok);}
-.drug{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:var(--surface);}
-.lane.stop .drug{background:var(--stop-bg);border-color:transparent;} .lane.ind .drug{background:var(--ind-bg);border-color:transparent;} .lane.ok .drug{background:var(--ok-bg);border-color:transparent;}
-.drug h4{margin:0;font-size:.98rem;}
-.drug .when{font-weight:700;margin:3px 0 0;font-size:.93rem;}
-.drug p{margin:4px 0 0;font-size:.88rem;}
-.rf{margin-top:6px;padding:6px 9px;border-radius:7px;background:var(--flag-bg);color:var(--flag);font-size:.84rem;font-weight:600;}
-.src{display:block;margin-top:6px;font-size:.76rem;color:var(--muted);}
-.empty{padding:20px 12px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px;font-size:.92rem;}
-details{border-top:1px solid var(--line);padding:10px 0;}
-details:first-of-type{border-top:0;}
-summary{cursor:pointer;font-weight:600;font-size:.94rem;min-height:32px;}
-details ul{margin:8px 0 0;padding-left:20px;font-size:.88rem;}
-details li{margin:4px 0;}
-.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-button{font:inherit;min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);font-weight:600;cursor:pointer;}
-button.sec{background:transparent;color:var(--accent);}
-.toast{font-size:.86rem;color:var(--ok);align-self:center;}
-textarea.copybox{position:absolute;left:-9999px;}
-footer{margin-top:22px;font-size:.8rem;color:var(--muted);}
-footer ul{padding-left:18px;margin:6px 0;}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
-@media print{.inputs,.btns{display:none;} .layout{display:block;} body{background:#fff;}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.app{max-width:1100px;margin:0 auto;padding:0 16px 32px}
+.top{padding:22px 0 10px}
+h1{font-size:clamp(1.6rem,4.6vw,2.2rem);line-height:1.15;margin:0 0 4px;letter-spacing:-.01em}
+.lead{margin:0 0 16px;color:var(--muted);max-width:62ch}
+.pt{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:10px;max-width:540px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--muted)}
+input[type=text],input[type=number],input[type=date],select{
+  font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);
+  border-radius:8px;padding:9px 10px;min-height:44px;width:100%}
+select{appearance:auto}
+
+.shell{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+.nav{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 8px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);scrollbar-width:thin}
+.grp{display:flex;gap:6px;align-items:center;flex:none}
+.grp+.grp{border-left:2px solid var(--line);padding-left:10px;margin-left:4px}
+.gt{font-size:.82rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.nv{display:flex;align-items:center;gap:8px;font:inherit;background:var(--surface);color:var(--ink);
+  border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;min-height:44px;cursor:pointer;white-space:nowrap}
+.nv[aria-current="page"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-weight:700}
+.ns{display:none;margin-left:auto;font-size:.88rem;font-variant-numeric:tabular-nums;opacity:.85}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;flex:none;background:var(--c,var(--na));
+  box-shadow:0 0 0 2px var(--surface)}
+.dot[data-l="na"]{background:transparent;border:2px solid var(--na)}
+[data-l="ok"]{--c:var(--ok);--c-bg:var(--ok-bg)}
+[data-l="warn"]{--c:var(--warn);--c-bg:var(--warn-bg)}
+[data-l="bad"]{--c:var(--bad);--c-bg:var(--bad-bg)}
+[data-l="info"]{--c:var(--info);--c-bg:var(--info-bg)}
+[data-l="na"]{--c:var(--na);--c-bg:var(--na-bg)}
+
+@media (min-width:900px){
+  .shell{grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+  .nav{flex-direction:column;overflow:visible;top:12px;gap:14px;padding:0}
+  .grp{flex-direction:column;align-items:stretch;gap:6px}
+  .grp+.grp{border-left:0;padding-left:0;margin-left:0}
+  .nv{border-radius:10px;justify-content:flex-start}
+  .ns{display:inline}
+}
+
+.view{--pad:18px;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:20px var(--pad) 0;min-width:0}
+@media (min-width:900px){.view{--pad:28px;padding-top:26px}}
+.view[hidden]{display:none}
+.view h2{margin:0;font-size:1.5rem;line-height:1.2}
+.sub{margin:2px 0 0;color:var(--muted)}
+.intro{margin:14px 0 4px;max-width:70ch}
+.note{margin:12px 0 0;padding:10px 12px;background:var(--info-bg);border-radius:8px;font-size:.92rem;max-width:70ch}
+.note a{color:var(--brand);font-weight:700}
+
+.q{margin-top:8px}
+.sec{font-size:1.05rem;margin:24px 0 2px;padding-top:16px;border-top:1.5px solid var(--line)}
+.qi{padding:12px 0;border-bottom:1px solid var(--line)}
+.qi:last-child{border-bottom:0}
+.qi.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px}
+.qt{margin:0 0 8px;font-weight:700;max-width:70ch}
+.row .qt{margin:0;flex:1 1 300px}
+.hint{margin:-4px 0 8px;color:var(--muted);font-size:.88rem;max-width:70ch}
+.row .hint{display:none}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts.col{flex-direction:column;align-items:stretch}
+.o{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;
+  border:1.5px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer;line-height:1.3}
+.o input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.o:has(input:checked){border-color:var(--brand);background:var(--sel);font-weight:700;box-shadow:inset 0 0 0 1px var(--brand)}
+.o:has(input:focus-visible){outline:3px solid var(--brand);outline-offset:2px}
+.o small{display:block;font-weight:400;color:var(--muted);margin-top:2px;font-size:.88rem}
+.o:has(input:checked) small{color:var(--ink)}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 16px;margin-top:12px}
+.grid2 label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:700}
+.readout{align-self:end;padding:10px 12px;border-radius:8px;background:var(--na-bg);font-weight:700;min-height:44px;display:flex;align-items:center}
+.btn{font:inherit;font-weight:700;background:var(--brand);color:var(--brand-ink);border:0;border-radius:10px;padding:10px 16px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+
+.bar{position:sticky;bottom:0;margin:22px calc(var(--pad)*-1) 0;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom,0px));
+  background:var(--surface);border-top:4px solid var(--c);border-radius:0 0 12px 12px;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:center;
+  box-shadow:0 -8px 16px -12px rgba(0,0,0,.45)}
+.bn{display:flex;flex-direction:column;min-width:64px}
+.bl{font-size:.8rem;color:var(--muted);font-weight:700}
+.bv{font-size:2rem;line-height:1.1;font-weight:700;color:var(--c);font-variant-numeric:tabular-nums}
+.bv.long{font-size:1.35rem}
+.bt{margin:0;font-size:.92rem;line-height:1.35}
+
+.sr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;
+  background:transparent;border:0;border-bottom:1px solid var(--line);padding:12px 0;cursor:pointer;min-height:56px}
+.sr .sn{font-weight:700}
+.sr .sv{grid-column:1;color:var(--muted);font-size:.92rem}
+.sr .chip{grid-row:1 / span 2;grid-column:2}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;padding:3px 10px 3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c);white-space:nowrap}
+.chip .dot{box-shadow:none;width:9px;height:9px}
+.grpt{margin:22px 0 0;font-size:1.05rem}
+.acts{margin:8px 0 0;padding-left:20px;max-width:72ch}
+.acts li{margin:6px 0}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 22px}
+textarea{width:100%;min-height:200px;font:inherit;font-size:.9rem;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:10px;margin-bottom:20px}
+.foot{margin:24px 0 0;color:var(--muted);font-size:.84rem;max-width:80ch}
+.foot p{margin:6px 0}
+
+#report{display:none}
+@media print{
+  @page{margin:15mm}
+  html,body{background:#fff !important;color:#000 !important}
+  .app{display:none !important}
+  #report{display:block;font:11pt/1.4 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;color:#000;background:#fff}
+  #report h1{font-size:17pt;margin:0 0 4pt}
+  #report h2{font-size:13pt;margin:16pt 0 4pt}
+  #report .rm{margin:0 0 10pt}
+  #report table{width:100%;border-collapse:collapse;font-size:10pt}
+  #report th,#report td{border:1px solid #888;padding:5pt 6pt;vertical-align:top;text-align:left}
+  #report th{background:#e8eeef}
+  #report tr{break-inside:avoid}
+  #report .g td{background:#d6e3e6;font-weight:700}
+  #report ul{margin:4pt 0 0;padding-left:16pt}
+  #report li{margin:3pt 0}
+  #report .rf{margin-top:14pt;font-size:9pt;color:#333}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <h1>Farmaci perioperatori nel paziente anziano o fragile</h1>
-  <p>Inserisci paziente e intervento, seleziona i farmaci assunti: ottieni cosa sospendere, cosa continuare e cosa valutare, con i red flag geriatrici.</p>
-  <div class="warn"><b>Bozza per valutazione.</b> Supporto decisionale basato su linee guida (ACC/AHA 2024, ESC 2022, ADA 2026, SPAQI, Beers 2023, STOPP/START v3, ESAIC). Non sostituisce il giudizio clinico né i protocolli locali. Le voci marcate «consenso» non hanno una raccomandazione formale.</div>
-</header>
-
-<div class="layout">
-  <section class="inputs" aria-label="Dati di input">
-    <div class="panel">
-      <h2>1. Paziente</h2>
-      <div class="row">
-        <label class="f"><span>Età (anni)</span><input id="age" type="number" inputmode="numeric" min="18" max="110" value="78"></label>
-        <label class="f"><span>eGFR (mL/min/1,73 m²)</span><input id="egfr" type="number" inputmode="numeric" min="5" max="150" placeholder="se nota"></label>
-      </div>
-      <label class="check"><input type="checkbox" id="frail"> Fragilità (es. Clinical Frailty Scale ≥5)</label>
-      <label class="check"><input type="checkbox" id="cogn"> Deficit cognitivo o delirium pregresso</label>
-      <label class="check"><input type="checkbox" id="hf"> Scompenso cardiaco</label>
+<div class="app">
+  <header class="top">
+    <h1>Prehabilitation</h1>
+    <p class="lead">Valutazione pre-operatoria del paziente fragile o anziano candidato a chirurgia maggiore. Nove scale in un unico percorso, con riepilogo finale.</p>
+    <div class="pt">
+      <label class="fld">Paziente (ID o iniziali)<input type="text" id="pid" autocomplete="off" placeholder="Evita il nome completo"></label>
+      <label class="fld">Data valutazione<input type="date" id="pdate"></label>
     </div>
-
-    <div class="panel">
-      <h2>2. Intervento</h2>
-      <label class="f"><span>Urgenza</span>
-        <select id="urg">
-          <option value="elective">Elettivo</option>
-          <option value="timesens">Indifferibile (time-sensitive)</option>
-          <option value="urgent">Urgente / emergenza</option>
-        </select></label>
-      <label class="f"><span>Tipo di intervento (classificazione ESC 2022)</span>
-        <select id="proc">
-          <optgroup label="Rischio basso (&lt;1%)">
-            <option value="1|Oculistica (es. cataratta)">Oculistica (es. cataratta)</option>
-            <option value="1|Mammella">Mammella</option>
-            <option value="1|Tiroide">Tiroide</option>
-            <option value="1|Odontoiatria">Odontoiatria</option>
-            <option value="1|Ginecologia, ortopedia o urologia minore">Ginecologia / ortopedia / urologia minore</option>
-            <option value="1|Altro rischio basso">Altro (rischio basso)</option>
-          </optgroup>
-          <optgroup label="Rischio intermedio (1–5%)" >
-            <option value="2|Protesi anca o ginocchio" selected>Protesi anca o ginocchio</option>
-            <option value="2|Chirurgia carotidea">Chirurgia carotidea</option>
-            <option value="2|Trapianto renale">Trapianto renale</option>
-            <option value="2|Altro rischio intermedio">Altro (rischio intermedio)</option>
-          </optgroup>
-          <optgroup label="Rischio alto (&gt;5%)">
-            <option value="3|Chirurgia aortica">Aneurisma / chirurgia aortica</option>
-            <option value="3|Chirurgia pancreatica">Chirurgia pancreatica</option>
-            <option value="3|Cistectomia">Cistectomia (vescica)</option>
-            <option value="3|Trapianto polmonare">Trapianto polmonare</option>
-            <option value="3|Altro rischio alto">Altro (rischio alto)</option>
-          </optgroup>
-        </select></label>
-      <p class="hint">Il rischio ESC è il rischio a 30 giorni di morte CV, infarto o ictus legato al solo intervento.</p>
-    </div>
-
-    <div class="panel">
-      <h2>3. Farmaci assunti</h2>
-      <input type="search" id="q" placeholder="Cerca farmaco o classe" aria-label="Cerca farmaco">
-      <div id="picker"></div>
-      <div class="sub" id="glpbox" hidden>
-        <label class="check"><input type="checkbox" id="glphigh"> GLP-1 RA: titolazione in corso, sintomi GI, dose alta o gastroparesi</label>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Risultato" aria-live="polite">
-    <div class="panel">
-      <h2>Percorso decisionale</h2>
-      <div class="pathway" id="path"></div>
-    </div>
-
-    <div class="panel">
-      <h2>Piano farmaci</h2>
-      <div class="summary" id="sum"></div>
-      <div id="out"></div>
-      <div class="btns">
-        <button id="copy">Copia riepilogo</button>
-        <button id="print" class="sec">Stampa</button>
-        <span class="toast" id="toast" role="status"></span>
-      </div>
-      <p class="hint">Anticoagulanti e antiaggreganti non sono inclusi: usare l'app dedicata alla gestione antitrombotica.</p>
-    </div>
-
-    <div class="panel">
-      <h2>Da evitare o limitare nell'anziano in perioperatorio</h2>
-      <details open><summary>Sedativi e anticolinergici</summary>
-        <ul>
-          <li>Benzodiazepine come premedicazione: evitare (Beers 2023; ESAIC 2024). Non usarle per trattare il delirium, salvo astinenza da alcol o benzodiazepine.</li>
-          <li>Anticolinergici forti (scopolamina, prometazina, proclorperazina, difenidramina, idrossizina, antidepressivi triciclici): evitare, considerando il carico anticolinergico cumulativo.</li>
-          <li>Meperidina: evitare, soprattutto con insufficienza renale (neurotossicità, delirium).</li>
-        </ul></details>
-      <details><summary>Analgesia e rene</summary>
-        <ul>
-          <li>FANS (ketorolac, diclofenac, ibuprofene): evitare con GFR &lt;30 o AKI; cautela con dosi ripetute.</li>
-          <li>Gabapentin: ridurre la dose con GFR &lt;60, evitare in ESRD.</li>
-        </ul></details>
-      <details><summary>Delirium postoperatorio</summary>
-        <ul>
-          <li>Prevenzione con interventi non farmacologici multicomponente nei pazienti a rischio (ESAIC 2024, raccomandazione forte).</li>
-          <li>Se le misure non farmacologiche falliscono: aloperidolo. Benzodiazepine non raccomandate.</li>
-          <li>Screening postoperatorio con CAM-ICU o Nu-DESC nei primi giorni.</li>
-        </ul></details>
-      <details><summary>Politerapia</summary>
-        <ul>
-          <li>STOPP/START v3 (133 criteri STOPP, 57 START) per la revisione farmacologica elettiva: la deprescrizione non va improvvisata nell'acuto, ma pianificata prima dell'intervento.</li>
-        </ul></details>
-    </div>
-  </section>
+  </header>
+  <div class="shell">
+    <nav class="nav" id="nav" aria-label="Scale di valutazione"></nav>
+    <main id="main"></main>
+  </div>
+  <footer class="foot">
+    <p>Strumento di supporto alla valutazione: non sostituisce il giudizio clinico. Nessun dato viene salvato o inviato; chiudendo o ricaricando la pagina le risposte vanno perse.</p>
+    <p>Fonti: NSQIP (Bilimoria 2013, ACS), DASI (Hlatky 1989), SARC-F (Malmstrom 2013), AUDIT-C (Bush 1998), HADS (Zigmond e Snaith 1983), Frailty Index per accumulo di deficit (Searle 2008), RCRI (Lee 1999; Duceppe 2017), STOP-Bang (Chung 2008), Clinical Frailty Scale 2.0 (Rockwood, Dalhousie University).</p>
+    <p>La HADS è protetta da copyright (GL Assessment): verifica le condizioni di licenza per l'uso nella tua struttura. Le diciture di DASI, SARC-F, AUDIT-C, HADS e Frailty Index riprendono il modulo «Allegato 2. Valutazione di ingresso», con refusi corretti; le altre scale sono traduzioni di lavoro da confrontare con le versioni validate.</p>
+  </footer>
 </div>
 
-<footer>
-  <b>Fonti principali</b>
-  <ul>
-    <li>2024 AHA/ACC multisocietà: gestione CV nella chirurgia non cardiaca (Circulation)</li>
-    <li>2022 ESC: valutazione e gestione CV nella chirurgia non cardiaca (Eur Heart J)</li>
-    <li>ADA Standards of Care 2026, sez. 16 (cura del diabete in ospedale)</li>
-    <li>Guidance multisocietaria 2024 sui GLP-1 RA nel perioperatorio</li>
-    <li>SPAQI 2022: gestione preoperatoria dei farmaci psichiatrici; consenso su ACEi/ARB</li>
-    <li>AGS Beers Criteria 2023; STOPP/START v3 (2023); ESAIC 2024 sul delirium postoperatorio</li>
-  </ul>
-  <button class="sec" id="theme" type="button">Tema chiaro / scuro</button>
-</footer>
-</div>
-<textarea class="copybox" id="cb" aria-hidden="true" tabindex="-1"></textarea>
-
+<div id="report" aria-hidden="true"></div>
 <script>
-(function(){
-  var $ = function(id){return document.getElementById(id);};
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const fmt=(x,d=2)=>String(Number(Number(x).toFixed(d))).replace(".",",");
+const YN=[["No",0],["Sì",1]];
+const B=(t,h)=>({t,h,o:YN});
+const F=(t,h)=>({t,h,o:YN,f:1});
+const G=(t)=>({t,o:[["Autonomo",0],["Aiuto parziale",0.5],["Dipendente",1]]});
+const LV={ok:"Nessun segnale",warn:"Da valutare",bad:"Segnale di rischio",info:"Registrato",na:"Da completare"};
 
-  // a: 'stop' | 'ind' | 'ok'   t: tempistica   n: nota   s: fonte   f: red flag geriatrico
-  var G = [
-    {g:'Cardiovascolari', d:[
-      {id:'ace', name:'ACE-inibitori / sartani', r:function(c){
-        if(c.hf) return {a:'ok',t:'Continuare',n:'Scompenso: continuare è ragionevole.',s:'ACC/AHA 2024'};
-        if(c.risk===1) return {a:'ind',t:'Valutare: si può continuare',n:'Rischio chirurgico basso e PA controllata: continuazione accettabile. Altrimenti sospendere la mattina.',s:'SPAQI 2022; ESC 2022'};
-        return {a:'stop',t:'Sospendere la mattina dell\'intervento (≥24 h dall\'ultima dose)',n:'Riduce l\'ipotensione intraoperatoria. Riprendere a emodinamica e funzione renale stabili.',s:'ESC 2022 (IIa); ACC/AHA 2024',f:'Anziano: più ipotensione e AKI; riprendere solo con creatinina stabile.'};
-      }},
-      {id:'bb', name:'Beta-bloccanti', r:function(){return {a:'ok',t:'Continuare, inclusa la mattina dell\'intervento',n:'Non iniziare di routine nel preoperatorio. Evitare la sospensione brusca.',s:'ESC 2022; ACC/AHA 2024'};}},
-      {id:'statin', name:'Statine', r:function(){return {a:'ok',t:'Continuare',n:'Se indicate e non ancora assunte, l\'avvio preoperatorio è raccomandato dall\'ACC/AHA.',s:'ESC 2022; ACC/AHA 2024'};}},
-      {id:'ccb', name:'Calcio-antagonisti', r:function(){return {a:'ok',t:'Continuare',n:'Attenzione all\'ipotensione con altri antipertensivi.',s:'Revisione chirurgia ambulatoriale 2026'};}},
-      {id:'clon', name:'Clonidina', r:function(){return {a:'ok',t:'Continuare, non iniziare ex novo',n:'La sospensione può causare ipertensione da rimbalzo.',s:'ACC/AHA 2024'};}},
-      {id:'diur', name:'Diuretici dell\'ansa / tiazidici', r:function(c){return {a:'stop',t:'Non assumere la mattina dell\'intervento',n:'Se scompenso instabile, decidere caso per caso. Riprendere a euvolemia e alimentazione ripresa.',s:'Consenso',f:'Anziano: rischio di ipovolemia, iponatriemia e ipopotassiemia.'};}},
-      {id:'mra', name:'Antialdosteronici (spironolattone)', r:function(c){return c.hf?{a:'ok',t:'Continuare',n:'Controllare potassiemia e funzione renale.',s:'Consenso'}:{a:'ind',t:'Individualizzare',n:'Valutare sospensione la mattina se rischio di iperkaliemia o ipovolemia.',s:'Consenso'};}},
-      {id:'dig', name:'Digossina / antiaritmici', r:function(){return {a:'ok',t:'Continuare',n:'Verificare elettroliti e funzione renale.',s:'Consenso',f:'Beers: digossina >0,125 mg/die da evitare; amiodarone non di prima scelta nella FA senza scompenso.'};}},
-      {id:'alpha', name:'Alfa-bloccanti (doxazosina, prazosina)', r:function(){return {a:'ind',t:'Individualizzare',n:'Se per BPH, continuare. Se antipertensivi, valutare la sospensione.',s:'Beers 2023',f:'Beers: ipotensione ortostatica come antipertensivi.'};}}
-    ]},
-    {g:'Diabete', d:[
-      {id:'sglt2', name:'SGLT2 inibitori', r:function(){return {a:'stop',t:'Sospendere 3 giorni prima (ertugliflozin: 4 giorni)',n:'Previene la chetoacidosi euglicemica. Riavviare con alimentazione ripresa; nello scompenso anche in reparto.',s:'ACC/AHA 2024; ESC 2022; ADA 2026',f:'Anziano: più rischio di disidratazione e ipotensione.'};}},
-      {id:'glp1', name:'GLP-1 RA / tirzepatide', r:function(c){
-        if(c.glphigh) return {a:'ind',t:'Rischio alto di svuotamento ritardato: strategie di mitigazione',n:'Dieta liquida ≥24 h prima, induzione a sequenza rapida, ecografia gastrica il giorno stesso; sospensione solo come decisione condivisa con endocrinologo e team anestesiologico.',s:'Guidance multisocietaria 2024',f:'Aspirazione: trattare come stomaco pieno se il dubbio persiste.'};
-        return {a:'ok',t:'Continuare',n:'Valutare sintomi GI la mattina. Le indicazioni precedenti (giornalieri il giorno stesso, settimanali una settimana prima) sono superate. Le linee guida non sono del tutto concordi.',s:'Guidance multisocietaria 2024; BAA 2025'};
-      }},
-      {id:'met', name:'Metformina', r:function(c){
-        if(c.egfr!==null && c.egfr<30) return {a:'stop',t:'Sospendere (eGFR <30: controindicata)',n:'Riprendere solo con funzione renale ripristinata.',s:'ADA 2026'};
-        var cons = c.age>=75 || (c.egfr!==null && c.egfr<60) || c.risk===3;
-        if(cons) return {a:'stop',t:'Non assumere la mattina dell\'intervento',n:'Scelta prudente nell\'anziano o con funzione renale ridotta. Discordanza: ADA 2026 sospende il giorno dell\'intervento, ACC/AHA 2024 ritiene ragionevole continuare.',s:'ADA 2026; ACC/AHA 2024'};
-        return {a:'ind',t:'Sospendere la mattina (ADA) o continuare (ACC/AHA)',n:'Le linee guida sono discordanti: scegliere in base al protocollo locale.',s:'ADA 2026; ACC/AHA 2024'};
-      }},
-      {id:'su', name:'Sulfaniluree / glinidi', r:function(){return {a:'stop',t:'Non assumere la mattina dell\'intervento',n:'Controllo glicemico ogni 2–4 h a digiuno; insulina al bisogno.',s:'ADA 2026',f:'Beers: ipoglicemia prolungata nell\'anziano.'};}},
-      {id:'oad', name:'DPP-4 inibitori / pioglitazone', r:function(){return {a:'stop',t:'Non assumere la mattina dell\'intervento',n:'Obiettivo glicemico perioperatorio 100–180 mg/dL.',s:'ADA 2026'};}},
-      {id:'ins', name:'Insulina basale / NPH', r:function(){return {a:'ind',t:'Ridurre: NPH al 50%, analoghi basali al 75–80%',n:'Monitorare la glicemia; insulina rapida al bisogno. Il solo CGM non basta in sala.',s:'ADA 2025–2026'};}}
-    ]},
-    {g:'Psichiatrici e neurologici', d:[
-      {id:'bzd', name:'Benzodiazepine croniche', r:function(){return {a:'ok',t:'Continuare, inclusa la mattina',n:'Evitare la sospensione brusca (astinenza). Disponibili per via endovenosa se non assumibili per os. Non aggiungere come premedicazione.',s:'SPAQI 2022; ESAIC 2024',f:'Beers: delirium, cadute. L\'uso cronico si associa a delirium: pianificare la deprescrizione elettiva.'};}},
-      {id:'ssri', name:'SSRI / SNRI / antidepressivi atipici', r:function(){return {a:'ok',t:'Continuare, anche il giorno dell\'intervento',n:'Attenzione a iponatriemia e interazioni serotoninergiche (tramadolo, meperidina, blu di metilene).',s:'SPAQI 2022',f:'Beers: paroxetina fortemente anticolinergica.'};}},
-      {id:'tca', name:'Antidepressivi triciclici', r:function(){return {a:'ind',t:'Non sospendere di colpo; valutare con lo psichiatra',n:'Deprescrizione elettiva, non nell\'acuto.',s:'Beers 2023',f:'Anticolinergici, sedativi, ipotensione ortostatica: rischio delirium.'};}},
-      {id:'imao', name:'IMAO', r:function(){return {a:'ind',t:'Decidere con lo psichiatra',n:'Gli irreversibili richiedono circa 2 settimane per il recupero della MAO. Se continuati: evitare meperidina, tramadolo, destrometorfano; vasopressori diretti con cautela.',s:'Consenso; revisione perioperatoria'};}},
-      {id:'li', name:'Litio', r:function(c){return {a:c.risk===1?'ind':'stop',t:c.risk===1?'Individualizzare (rischio basso)':'Sospendere 24–72 h prima (chirurgia maggiore)',n:'Indice terapeutico stretto, dipende dalla funzione renale. Interazioni con diuretici, FANS, ACEi. Può prolungare i miorilassanti.',s:'Revisione perioperatoria litio',f:'Anziano: clearance ridotta, più rischio di tossicità.'};}},
-      {id:'apsy', name:'Antipsicotici', r:function(){return {a:'ok',t:'Continuare',n:'La sospensione espone a ricaduta e, per alcuni, a sindrome neurolettica maligna.',s:'Revisione chirurgia ambulatoriale 2026; SPAQI',f:'Beers: ictus e declino cognitivo nella demenza.'};}},
-      {id:'park', name:'Antiparkinsoniani', r:function(){return {a:'ok',t:'Continuare, rispettando gli orari, inclusa la mattina',n:'Evitare metoclopramide, aloperidolo e droperidolo (antagonisti dopaminergici).',s:'Revisione 2026; consenso'};}},
-      {id:'aed', name:'Antiepilettici', r:function(){return {a:'ok',t:'Continuare senza interruzioni',n:'Se non assumibili per os, convertire in forma endovenosa.',s:'SPAQI 2022; consenso'};}},
-      {id:'gaba', name:'Gabapentin / pregabalin', r:function(c){var low=c.egfr!==null&&c.egfr<60;return {a:'ind',t:low?'Ridurre la dose (eGFR <60)':'Continuare; valutare dose',n:'Evitare in ESRD. Sedazione additiva con oppioidi.',s:'Beers 2023',f:'Sovrasedazione e delirium; non usare come premedicazione di routine.'};}},
-      {id:'opi', name:'Oppioidi cronici', r:function(){return {a:'ok',t:'Continuare, inclusa la mattina',n:'Prevedere analgesia multimodale e fabbisogni aumentati.',s:'Consenso',f:'Evitare meperidina; rischio di depressione respiratoria combinato con benzodiazepine e gabapentinoidi.'};}}
-    ]},
-    {g:'Analgesici e altro', d:[
-      {id:'fans', name:'FANS', r:function(c){var bad=c.egfr!==null&&c.egfr<30;return {a:'stop',t:bad?'Sospendere / evitare (eGFR <30)':'Non assumere la mattina dell\'intervento',n:'Evitare in AKI. Cautela con dosi ripetute postoperatorie.',s:'Beers 2023; consenso',f:'Sanguinamento GI, AKI, ipertensione.'};}},
-      {id:'anticho', name:'Anticolinergici (ossibutinina, difenidramina, idrossizina)', r:function(){return {a:'stop',t:'Non somministrare; sospendere se possibile',n:'Verificare il carico anticolinergico totale. Se l\'assunzione è cronica, valutare un\'alternativa con il curante.',s:'Beers 2023; STOPP/START v3',f:'Delirium, ritenzione urinaria, stipsi.'};}},
-      {id:'thy', name:'Levotiroxina', r:function(){return {a:'ok',t:'Continuare',n:'Assumere anche il giorno dell\'intervento.',s:'Revisione 2026'};}},
-      {id:'ster', name:'Corticosteroidi cronici', r:function(){return {a:'ok',t:'Continuare; valutare dose da stress',n:'In base a dose, durata e invasività dell\'intervento. Idrocortisone se non assumibili per os.',s:'Consenso',f:'Beers: possono favorire il delirium.'};}},
-      {id:'ppi', name:'Inibitori di pompa protonica', r:function(){return {a:'ok',t:'Continuare',n:'Rivedere l\'indicazione in elezione.',s:'Consenso'};}},
-      {id:'herb', name:'Integratori e fitoterapici', r:function(){return {a:'stop',t:'Sospendere in anticipo (di norma 1–2 settimane)',n:'Verificare ogni prodotto: effetti su emostasi e interazioni anestesiologiche.',s:'Consenso'};}}
-    ]}
-  ];
+/* ---------- Definizione delle scale ---------- */
+const NS_FIELDS=[
+  {k:"cpt",t:"Codice CPT o procedura",type:"text"},
+  {k:"age",t:"Età (anni)",type:"number"},
+  {k:"sex",t:"Sesso",o:["Maschio","Femmina"]},
+  {k:"func",t:"Stato funzionale",o:["Indipendente","Parzialmente dipendente","Totalmente dipendente"]},
+  {k:"emerg",t:"Intervento in emergenza",o:["No","Sì"]},
+  {k:"asa",t:"Classe ASA",o:["I (sano)","II (malattia sistemica lieve)","III (malattia sistemica grave)","IV (minaccia costante per la vita)","V (moribondo)"]},
+  {k:"ster",t:"Steroidi cronici",o:["No","Sì"]},
+  {k:"asc",t:"Ascite nei 30 giorni precedenti",o:["No","Sì"]},
+  {k:"sepsis",t:"Sepsi sistemica nelle 48 ore precedenti",o:["Nessuna","SIRS","Sepsi","Shock settico"]},
+  {k:"vent",t:"Dipendenza da ventilatore",o:["No","Sì"]},
+  {k:"ca",t:"Neoplasia disseminata",o:["No","Sì"]},
+  {k:"dm",t:"Diabete",o:["No","Ipoglicemizzanti orali","Insulina"]},
+  {k:"htn",t:"Ipertensione in terapia",o:["No","Sì"]},
+  {k:"chf",t:"Scompenso cardiaco nei 30 giorni precedenti",o:["No","Sì"]},
+  {k:"dysp",t:"Dispnea",o:["Nessuna","Per sforzo moderato","A riposo"]},
+  {k:"smk",t:"Fumatore nell'ultimo anno",o:["No","Sì"]},
+  {k:"copd",t:"BPCO grave",o:["No","Sì"]},
+  {k:"dial",t:"Dialisi",o:["No","Sì"]},
+  {k:"arf",t:"Insufficienza renale acuta",o:["No","Sì"]},
+  {k:"h",t:"Altezza (cm)",type:"number"},
+  {k:"w",t:"Peso (kg)",type:"number"}
+];
+const NS_RES=[
+  {k:"r_ser",t:"Complicanza seria (%)"},
+  {k:"r_any",t:"Qualsiasi complicanza (%)"},
+  {k:"r_death",t:"Mortalità (%)"},
+  {k:"r_disc",t:"Dimissione in struttura (%)"},
+  {k:"r_los",t:"Degenza prevista (giorni)"}
+];
 
-  var sel = {};
-  var picker = $('picker');
-
-  function buildPicker(){
-    var html='';
-    G.forEach(function(grp){
-      html += '<div class="group" data-g="'+grp.g+'"><h3>'+grp.g+'</h3><div class="chips">';
-      grp.d.forEach(function(x){
-        html += '<label class="chip" data-name="'+x.name.toLowerCase()+' '+grp.g.toLowerCase()+'"><input type="checkbox" data-id="'+x.id+'"><span>'+x.name+'</span></label>';
-      });
-      html += '</div></div>';
-    });
-    picker.innerHTML = html;
+const SC=[
+{id:"nsqip",g:"s",name:"NSQIP",sub:"Rischio chirurgico: ACS NSQIP Surgical Risk Calculator",custom:true,
+ intro:"Il modello NSQIP è proprietario e il calcolo avviene sul sito ufficiale dell'American College of Surgeons. Qui raccogli in un solo posto le 21 variabili richieste e registri i risultati per il riepilogo.",
+ calc:s=>{
+  const a=ans[s.id];
+  const filled=NS_FIELDS.filter(f=>a[f.k]!==undefined&&a[f.k]!=="").length;
+  const hasRes=NS_RES.some(f=>a[f.k]!==undefined&&a[f.k]!=="");
+  const v=k=>(a[k]!==undefined&&a[k]!=="")?a[k]:null;
+  if(hasRes){
+    const parts=[];
+    if(v("r_ser")!==null)parts.push(`complicanza seria ${v("r_ser")}%`);
+    if(v("r_any")!==null)parts.push(`qualsiasi complicanza ${v("r_any")}%`);
+    if(v("r_death")!==null)parts.push(`mortalità ${v("r_death")}%`);
+    if(v("r_disc")!==null)parts.push(`dimissione in struttura ${v("r_disc")}%`);
+    if(v("r_los")!==null)parts.push(`degenza ${v("r_los")} giorni`);
+    const main=v("r_ser")!==null?v("r_ser")+"%":(v("r_death")!==null?v("r_death")+"%":"✓");
+    return {lab:v("r_ser")!==null?"Complicanza seria":(v("r_death")!==null?"Mortalità":"Risultati"),main,lvl:"info",
+      text:"Dal calcolatore: "+parts.join(", ")+".",short:parts.slice(0,2).join(", "),
+      act:[`Rischio NSQIP registrato (${parts.join(", ")}): usalo nella discussione degli obiettivi di cura e nel consenso informato.`]};
   }
+  return {lab:"Variabili",main:`${filled}/21`,lvl:"na",
+    text:filled===21?"Variabili complete. Apri il calcolatore ufficiale e riporta qui i risultati.":"Compila le variabili mancanti, poi inseriscile nel calcolatore ufficiale.",short:`${filled}/21 variabili`};
+ }},
 
-  function ctx(){
-    var proc = $('proc').value.split('|');
-    var e = parseFloat($('egfr').value);
-    return {
-      age: parseInt($('age').value,10) || 0,
-      egfr: isNaN(e) ? null : e,
-      frail: $('frail').checked, cogn: $('cogn').checked, hf: $('hf').checked,
-      urg: $('urg').value, risk: parseInt(proc[0],10), proc: proc[1],
-      glphigh: $('glphigh').checked
-    };
+{id:"dasi",g:"s",name:"DASI",sub:"Duke Activity Status Index: capacità funzionale",
+ intro:"Chiedi al paziente: «È capace di…». Ogni «Sì» vale i punti DASI indicati; punteggio da 0 a 58,2. VO₂peak stimato = 0,43 × DASI + 9,6.",
+ row:true,
+ items:[
+  ["Mangiare, vestirsi, lavarsi, andare in bagno da solo?",2.75],
+  ["Camminare per la casa e intorno ad essa (esempio, nel giardino)?",1.75],
+  ["Camminare attorno ad un isolato su terreno pianeggiante?",2.75],
+  ["Salire un piano di scale? Cammina in salita?",5.5],
+  ["Fare una breve corsa?",8],
+  ["Fare lavori domestici leggeri come spolverare o lavare i piatti?",2.7],
+  ["Fare lavori domestici moderati come usare aspirapolvere, spazzare o portare la spesa?",3.5],
+  ["Fare lavori domestici pesanti come lavare il pavimento o spostare mobili?",8],
+  ["Fare lavori in giardino come usare decespugliatore, un tagliaerba o rastrellare?",4.5],
+  ["Avere rapporti sessuali?",5.25],
+  ["Partecipare ad attività ricreative con impegno fisico moderato come ballo, bocce, passeggiate o bici?",6],
+  ["Partecipare a sport faticosi come nuoto, tennis, calcio, basket o sci?",7.5]
+ ].map(([t,w])=>({t,o:[["No",0],["Sì",w]]})),
+ calc:s=>{
+  const {sum,n,N}=sumItems(s); const d=Math.round(sum*100)/100;
+  if(n<N)return {lab:"DASI",main:fmt(d),lvl:"na",text:`Rispondi a tutte le domande (${n}/${N}).`};
+  const vo2=0.43*d+9.6, met=vo2/3.5, low=d<=34;
+  return {lab:"DASI",main:fmt(d),lvl:low?"bad":"ok",
+   text:`VO₂peak stimato ${fmt(vo2,1)} mL/kg/min, circa ${fmt(met,1)} MET. `+(low?"Con DASI ≤34 la capacità funzionale è ridotta, condizione associata a maggior rischio di eventi cardiaci e complicanze post-operatorie.":"DASI >34: capacità funzionale non ridotta secondo la soglia di rischio peri-operatorio."),
+   short:`${fmt(d)} su 58,2 (${fmt(met,1)} MET)`,
+   act:low?["Capacità funzionale ridotta (DASI ≤34): considerare test del cammino dei 6 minuti o CPET e un programma di esercizio aerobico e di resistenza."]:[]};
+ }},
+
+{id:"sarcf",g:"s",name:"SARC-F",sub:"Screening della sarcopenia",
+ intro:"Cinque domande, punteggio da 0 a 10. Un punteggio ≥4 indica sarcopenia probabile.",
+ items:[
+  {t:"Quanta difficoltà ha ad alzare e trasportare un peso di circa 4,5 kg?",o:[["Nessuna",0],["Abbastanza",1],["Molta",2]]},
+  {t:"Quanta difficoltà ha a camminare intorno ad una stanza?",o:[["Nessuna",0],["Abbastanza",1],["Molta",2]]},
+  {t:"Quanta difficoltà ha ad alzarsi da una sedia o dal letto?",o:[["Nessuna",0],["Abbastanza",1],["Molta",2]]},
+  {t:"Quanta difficoltà ha a salire 10 scalini?",o:[["Nessuna",0],["Abbastanza",1],["Molta o impossibilitato",2]]},
+  {t:"Quante volte è caduto negli ultimi 12 mesi?",o:[["Mai",0],["1–3 cadute",1],["4 o più cadute",2]]}
+ ],
+ calc:s=>{
+  const {sum,n,N}=sumItems(s);
+  if(n<N)return {lab:"SARC-F",main:String(sum),lvl:"na",text:`Rispondi a tutte le domande (${n}/${N}).`};
+  const pos=sum>=4;
+  return {lab:"SARC-F",main:String(sum),lvl:pos?"bad":"ok",
+   text:pos?"Sarcopenia probabile (≥4): associata a peggiori esiti funzionali e post-operatori.":"Sotto soglia (<4): sarcopenia poco probabile.",
+   short:`${sum} su 10`,
+   act:pos?["Sospetta sarcopenia: valutazione nutrizionale, apporto proteico 1,2–1,5 g/kg/die e esercizio di resistenza supervisionato."]:[]};
+ }},
+
+{id:"auditc",g:"s",name:"AUDIT-C",sub:"Screening del consumo rischioso di alcol",
+ intro:"Tre domande, punteggio da 0 a 12. Soglia di positività: ≥4 negli uomini, ≥3 nelle donne.",
+ items:[
+  {k:"sex",nosc:true,t:"Sesso (serve per la soglia)",o:[["Uomo",0],["Donna",1]]},
+  {t:"Con quale frequenza consuma bevande alcoliche?",o:[["Mai",0],["1 volta al mese o meno",1],["2–4 volte al mese",2],["2–3 volte a settimana",3],["4 o più volte a settimana",4]]},
+  {t:"Quanti bicchieri standard di bevande alcoliche consuma in media al giorno?",h:"1 bicchiere standard = circa 10–12 g di alcol: un bicchiere di vino, una birra piccola, un bicchierino di superalcolico.",o:[["1 o 2",0],["3 o 4",1],["5 o 6",2],["7–9",3],["10 o più",4]]},
+  {t:"Con quale frequenza le è capitato di bere sei o più bicchieri di bevande alcoliche in un'unica occasione?",o:[["Mai",0],["Meno di 1 volta al mese",1],["1 volta al mese",2],["1 volta a settimana",3],["Ogni giorno o quasi",4]]}
+ ],
+ calc:s=>{
+  const {sum,n,N}=sumItems(s); const sex=ans[s.id].sex;
+  if(n<N)return {lab:"AUDIT-C",main:String(sum),lvl:"na",text:`Rispondi a tutte le domande (${n}/${N}).`};
+  const cut=sex===0?4:(sex===1?3:null);
+  let lvl,text;
+  if(cut===null){
+    if(sum>=4){lvl="warn";text="Positivo con entrambe le soglie (≥4).";}
+    else if(sum===3){lvl="warn";text="Positivo per le donne (≥3), negativo per gli uomini (≥4): indica il sesso.";}
+    else{lvl="ok";text="Negativo con entrambe le soglie.";}
+  }else if(sum>=cut){
+    lvl=sum>=8?"bad":"warn";
+    text=`Screening positivo (soglia ≥${cut}). `+(sum>=8?"Punteggio alto: considerare l'AUDIT completo.":"Valutare un intervento breve.");
+  }else{lvl="ok";text=`Screening negativo (soglia ≥${cut}).`;}
+  return {lab:"AUDIT-C",main:String(sum),lvl,text,short:`${sum} su 12`,
+    act:lvl==="ok"?[]:["AUDIT-C positivo: intervento breve e astensione dall'alcol, idealmente da almeno 4 settimane prima dell'intervento."]};
+ }},
+
+{id:"hads",g:"s",name:"HADS",sub:"Hospital Anxiety and Depression Scale",
+ intro:"Il paziente indica per ogni affermazione la risposta più vicina al suo stato emozionale. Ansia (A) e depressione (D) hanno 7 item ciascuna, punteggio 0–21.",
+ items:[
+  {sub:"A",t:"A1. Mi sento teso e molto nervoso",o:[["Per la maggior parte del tempo",3],["Per molto tempo",2],["A volte",1],["Mai",0]]},
+  {sub:"D",t:"D2. Riesco ancora a provare piacere per le cose che ho sempre fatto volentieri",o:[["Proprio come una volta",0],["Non proprio come una volta",1],["Solo in parte",2],["Per niente",3]]},
+  {sub:"A",t:"A3. Provo un sentimento di paura come se potesse accadere qualcosa di terribile",o:[["Sicuramente e in maniera intensa",3],["Sì, ma in maniera non troppo intensa",2],["Un po' ma non da preoccuparmene",1],["Per niente",0]]},
+  {sub:"D",t:"D4. Riesco a ridere e a vedere il lato divertente delle cose",o:[["Proprio come ho sempre fatto",0],["Non proprio come un tempo",1],["Sicuramente non come un tempo",2],["Per niente",3]]},
+  {sub:"A",t:"A5. Mi vengono in mente pensieri preoccupanti",o:[["Per la maggior parte del tempo",3],["Per molto tempo",2],["A volte, non troppo spesso",1],["Solo in qualche occasione",0]]},
+  {sub:"D",t:"D6. Mi sento di buon umore",o:[["Mai",3],["Raramente",2],["A volte",1],["Per la maggior parte del tempo",0]]},
+  {sub:"A",t:"A7. Riesco a stare seduto tranquillo e a sentirmi rilassato",o:[["Certamente",0],["Di solito",1],["Raramente",2],["Per nulla",3]]},
+  {sub:"D",t:"D8. Mi sento rallentato nei movimenti",o:[["Quasi sempre",3],["Molto spesso",2],["A volte",1],["Mai",0]]},
+  {sub:"A",t:"A9. Mi sento nervoso, come con un senso di tensione allo stomaco",o:[["Mai",0],["A volte",1],["Piuttosto spesso",2],["Molto spesso",3]]},
+  {sub:"D",t:"D10. Ho perso interesse per il mio aspetto fisico",o:[["Completamente",3],["Non quanto dovrei",2],["Forse non abbastanza",1],["Me ne prendo cura come al solito",0]]},
+  {sub:"A",t:"A11. Mi sento irrequieto e incapace di stare fermo",o:[["Moltissimo",3],["Molto",2],["Non molto",1],["Per niente",0]]},
+  {sub:"D",t:"D12. Guardo con piacere alle cose future",o:[["Quanto sempre",0],["Un po' meno di prima",1],["Decisamente meno di prima",2],["Quasi per nulla",3]]},
+  {sub:"A",t:"A13. Mi vengono improvvise crisi di panico",o:[["Molto spesso",3],["Piuttosto spesso",2],["Non molto spesso",1],["Mai",0]]},
+  {sub:"D",t:"D14. Provo piacere leggendo un buon libro o seguendo la radio o la televisione",o:[["Spesso",0],["A volte",1],["Non di frequente",2],["Molto raramente",3]]}
+ ],
+ calc:s=>{
+  const a=ans[s.id]; let A=0,D=0,n=0;
+  s.items.forEach(it=>{const x=a[it.k]; if(x!==undefined){n++; if(it.sub==="A")A+=it.o[x][1]; else D+=it.o[x][1];}});
+  if(n<14)return {lab:"HADS",main:"–",lvl:"na",text:`Rispondi a tutte le domande (${n}/14).`};
+  const cat=x=>x>=11?2:(x>=8?1:0), nm=["nella norma","borderline","probabile caso clinico"];
+  const w=Math.max(cat(A),cat(D));
+  const act=[];
+  if(w>=1)act.push(`HADS ${w===2?"≥11":"≥8"} (ansia ${A}, depressione ${D}): offrire supporto psicologico${w===2?" e considerare l'invio specialistico":""}.`);
+  return {lab:"HADS",main:`A ${A} / D ${D}`,lvl:["ok","warn","bad"][w],
+   text:`Ansia ${A}/21 (${nm[cat(A)]}), depressione ${D}/21 (${nm[cat(D)]}). Soglie per ciascuna sottoscala: 0–7 normale, 8–10 borderline, ≥11 caso probabile.`,
+   short:`Ansia ${A}, depressione ${D}`,act};
+ }},
+
+{id:"fi",g:"s",name:"Frailty Index",sub:"Indice di fragilità: 36 domande sì/no",row:true,
+ intro:"Il punteggio totale è il numero di «Sì». L'indice è dato dai «Sì» divisi per le domande valutate; servono almeno 30 risposte. Il simbolo 🚩 indica un parametro sfavorevole.",
+ items:[
+  F("Si sente frequentemente stanco/a e incapace di svolgere le attività quotidiane?"),
+  F("Ha bisogno di assistenza nel muoversi?","Aiuto di una persona, stampelle, deambulatore, bastone, sedia a rotelle"),
+  F("È mai caduta/o negli ultimi 12 mesi?"),
+  B("Ha bisogno di assistenza per svolgere le attività quotidiane?"),
+  B("Le capita di avere poco equilibrio o di sentirsi instabile?"),
+  B("Esce di casa meno di una volta a settimana?"),
+  B("Vive solo/a o sente la mancanza di persone e sostegno intorno a lei?"),
+  F("Ha problemi di anemia?"),
+  B("Ha la fibrillazione atriale o anomalie del ritmo cardiaco?"),
+  B("Ha mai avuto un infarto o dolore toracico di origine cardiaca (angina)?"),
+  F("Ha l'insufficienza cardiaca o scompenso cardiaco?"),
+  B("Ha problemi a carico delle valvole cardiache?"),
+  B("Soffre di pressione arteriosa alta? Assume antipertensivi?"),
+  B("Ha problemi circolatori alle arterie delle gambe o alle carotidi?"),
+  F("Prova fatica a respirare a riposo o durante/dopo lo sforzo?"),
+  F("Ha malattie respiratorie?","Ad es. bronchite cronica, enfisema, asma, fibrosi"),
+  B("Ha il diabete?","Se sì, annota se assume insulina"),
+  B("Ha mai sofferto di problemi alla tiroide?","Ad es. ipotiroidismo o ipertiroidismo"),
+  B("Ha mai avuto problemi renali?"),
+  B("Ha l'incontinenza urinaria?"),
+  B("Ha problemi urologici?","A carico di prostata, vescica, ureteri"),
+  F("Sente di avere problemi di memoria? Ha ricevuto una diagnosi di disturbo cognitivo o demenza? Ha mai avuto confusione dopo un intervento chirurgico?"),
+  F("Ha il morbo di Parkinson?"),
+  B("Ha avuto perdite di coscienza?","Ad esempio sincope o epilessia"),
+  B("Ha mai avuto un ictus o un TIA?"),
+  F("Ha problemi di insonnia o di apnee notturne?"),
+  B("Presenta problemi di udito?"),
+  B("Presenta problemi di vista?"),
+  B("Ha l'osteoporosi?"),
+  B("Ha mai avuto fratture da fragilità ossea?","Fratture dopo caduta"),
+  B("Soffre di artrite/artrosi?"),
+  B("Ha problemi podologici?","A carico dei piedi"),
+  B("Ha ulcere cutanee?"),
+  B("Soffre di ulcera gastrica e/o duodenale?"),
+  F("Ha perso peso e/o ha una riduzione dell'appetito?"),
+  B("Assume 5 o più farmaci?")
+ ],
+ calc:s=>{
+  const a=ans[s.id]; let yes=0,n=0; const fl=[];
+  s.items.forEach(it=>{const x=a[it.k]; if(x!==undefined){n++; if(x===1){yes++; if(it.f)fl.push(it.t.replace(/\?.*$/,""));}}});
+  if(n<30)return {lab:"Frailty Index",main:String(yes),lvl:"na",text:`Risposte ${n} su ${s.items.length}: ne servono almeno 30.`};
+  const fi=yes/n;
+  const lvl=fi>=0.25?"bad":(fi>=0.10?"warn":"ok");
+  const cl=fi>=0.45?"fragilità severa":(fi>=0.25?"fragile":(fi>=0.10?"pre-fragile":"robusto"));
+  const act=[];
+  if(fi>=0.25)act.push("Frailty Index ≥0,25: valutazione geriatrica multidimensionale e programma di prehabilitation multimodale (esercizio, nutrizione, cognitivo).");
+  if(fl.length)act.push(`Parametri sfavorevoli (🚩) presenti nel Frailty Index: ${fl.join("; ")}.`);
+  return {lab:"Numero di Sì",main:String(yes),lvl,
+   text:`Indice ${fmt(fi)} (${yes} su ${n}): paziente ${cl}. Parametri sfavorevoli 🚩: ${fl.length}. Soglie usate per l'indice: <0,10 robusto, 0,10–0,24 pre-fragile, ≥0,25 fragile.`,
+   short:`${yes} Sì su ${n}, indice ${fmt(fi)} (${cl})`,act};
+ }},
+
+{id:"rcri",g:"a",name:"RCRI",sub:"Revised Cardiac Risk Index",def:0,
+ intro:"Un punto per ciascun fattore presente. Le risposte predefinite sono «No».",
+ items:[
+  {k:"surg",t:"Chirurgia ad alto rischio",h:"Intraperitoneale, intratoracica o vascolare sovra-inguinale",o:YN},
+  {k:"ihd",t:"Cardiopatia ischemica",h:"Pregresso infarto, test da sforzo positivo, angina in atto, uso di nitrati o onde Q all'ECG",o:YN},
+  {k:"chf",t:"Scompenso cardiaco congestizio",h:"Anamnesi di scompenso, edema polmonare, dispnea parossistica notturna, congestione alla radiografia",o:YN},
+  {k:"cva",t:"Malattia cerebrovascolare",h:"Pregresso ictus o TIA",o:YN},
+  {k:"dm",t:"Diabete in terapia insulinica",o:YN},
+  {k:"cr",t:"Creatinina pre-operatoria >2,0 mg/dL",h:"Equivalente a >177 µmol/L",o:YN}
+ ],
+ calc:s=>{
+  const {sum}=sumItems(s);
+  if(!touched[s.id])return {lab:"RCRI",main:"–",lvl:"na",text:"Rispondi alle domande: le risposte predefinite sono «No»."};
+  const i=Math.min(sum,3), lee=[0.4,0.9,6.6,11][i], duc=[3.9,6,10.1,15][i];
+  const lvl=sum===0?"ok":(sum===1?"warn":"bad");
+  const act=[];
+  if(sum>=1)act.push("RCRI ≥1: considerare NT-proBNP o BNP pre-operatorio (indicazione CCS 2017) e rivalutazione cardiologica secondo le linee guida.");
+  if(sum>=2)act.push("RCRI ≥2: rischio cardiaco elevato, valutare ottimizzazione terapeutica e monitoraggio peri-operatorio intensivo.");
+  return {lab:"RCRI",main:`${sum}${sum>=3?"+":""}`,lvl,
+   text:`Rischio di eventi cardiaci maggiori a 30 giorni: ${fmt(lee,1)}% nella coorte originale (Lee 1999), ${fmt(duc,1)}% nella coorte più recente (Duceppe 2017).`,
+   short:`${sum} ${sum===1?"punto":"punti"} (rischio ${fmt(duc,1)}%)`,act};
+ }},
+
+{id:"stopbang",g:"a",name:"STOP-Bang",sub:"Screening delle apnee ostruttive del sonno",def:0,
+ intro:"Un punto per ogni risposta affermativa, punteggio da 0 a 8. Le risposte predefinite sono «No».",
+ row:true,
+ items:[
+  {k:"snore",t:"Russa forte, tanto da essere sentito attraverso una porta chiusa?",o:YN},
+  {k:"tired",t:"Si sente spesso stanco o sonnolento durante il giorno?",o:YN},
+  {k:"obs",t:"Qualcuno ha osservato pause del respiro durante il sonno?",o:YN},
+  {k:"bp",t:"Ha ipertensione arteriosa o è in trattamento per questa?",o:YN},
+  {k:"bmi",t:"BMI >35 kg/m²",o:YN},
+  {k:"age",t:"Età >50 anni",o:YN},
+  {k:"neck",t:"Circonferenza del collo >40 cm",o:YN},
+  {k:"sex",t:"Sesso maschile",o:YN}
+ ],
+ calc:s=>{
+  const {sum}=sumItems(s); const a=ans[s.id];
+  if(!touched[s.id])return {lab:"STOP-Bang",main:"–",lvl:"na",text:"Rispondi alle domande: le risposte predefinite sono «No»."};
+  const stop=a.snore+a.tired+a.obs+a.bp;
+  const hi=sum>=5||(stop>=2&&(a.bmi||a.sex||a.neck));
+  const lvl=hi?"bad":(sum>=3?"warn":"ok");
+  const cl=hi?"alto rischio di OSA":(sum>=3?"rischio intermedio di OSA":"basso rischio di OSA");
+  const act=[];
+  if(hi)act.push("STOP-Bang ad alto rischio: considerare polisonnografia e CPAP pre-operatoria, e precauzioni peri-operatorie (risparmio di oppioidi e sedativi, monitoraggio prolungato).");
+  else if(sum>=3)act.push("STOP-Bang intermedio: valutare ulteriori accertamenti (es. bicarbonati sierici) e adottare precauzioni su oppioidi e sedativi.");
+  return {lab:"STOP-Bang",main:String(sum),lvl,
+   text:`${cl[0].toUpperCase()+cl.slice(1)} (${sum}/8). Soglie: 0–2 basso, 3–4 intermedio, 5–8 alto; è alto anche con almeno 2 voci STOP e BMI >35, collo >40 cm o sesso maschile.`,
+   short:`${sum} su 8 (${cl})`,act};
+ }},
+
+{id:"cfs",g:"a",name:"Clinical Frailty Scale",sub:"CFS 2.0, giudizio clinico su nove livelli",
+ intro:"Scegli il livello che descrive meglio il paziente nelle due settimane precedenti la malattia acuta. Nei pazienti con demenza il livello di fragilità corrisponde in genere allo stadio della demenza.",
+ items:[{k:"cfs",t:"Livello di fragilità",o:[
+  ["1. Molto in forma",1,"Robusto, attivo, energico e motivato. Fa regolarmente esercizio; tra i più in forma per la sua età."],
+  ["2. In forma",2,"Nessun sintomo di malattia attiva, ma meno in forma del livello 1. Fa attività fisica occasionale."],
+  ["3. In buon controllo",3,"Patologie ben controllate, ma non attivo oltre la normale camminata."],
+  ["4. Fragilità molto lieve",4,"Non dipende dagli altri nella vita quotidiana, ma i sintomi limitano le attività: spesso rallentato o stanco durante il giorno."],
+  ["5. Fragilità lieve",5,"Rallentamento evidente; serve aiuto nelle attività strumentali complesse (finanze, trasporti, lavori domestici pesanti, farmaci)."],
+  ["6. Fragilità moderata",6,"Serve aiuto in tutte le attività fuori casa e nella gestione della casa; difficoltà con le scale, aiuto per il bagno, a volte per vestirsi."],
+  ["7. Fragilità grave",7,"Completamente dipendente per la cura della persona (per cause fisiche o cognitive), ma stabile e senza alto rischio di morte entro circa 6 mesi."],
+  ["8. Fragilità molto grave",8,"Completamente dipendente e vicino alla fine della vita; non si riprenderebbe nemmeno da una malattia lieve."],
+  ["9. Malato terminale",9,"Vicino alla fine della vita, con aspettativa di vita inferiore a 6 mesi e senza altra fragilità grave."]
+ ]}],
+ calc:s=>{
+  const x=ans[s.id].cfs;
+  if(x===undefined)return {lab:"CFS",main:"–",lvl:"na",text:"Seleziona un livello."};
+  const v=s.items[0].o[x][1];
+  const lvl=v<=3?"ok":(v===4?"warn":"bad");
+  const text=v<=3?"Paziente non fragile.":(v===4?"Fragilità molto lieve: livello da monitorare, a rischio di evoluzione.":"Paziente fragile (CFS ≥5): rischio aumentato di mortalità, complicanze, delirium e istituzionalizzazione.");
+  return {lab:"CFS",main:String(v),lvl,text,short:`livello ${v} su 9`,
+   act:v>=5?["CFS ≥5: valutazione geriatrica multidimensionale, discussione condivisa degli obiettivi di cura e prevenzione del delirium."]:[]};
+ }}
+];
+
+/* ---------- Stato ---------- */
+const ans={},touched={},R={};
+SC.forEach(s=>{
+  ans[s.id]={};
+  if(s.items){
+    s.items.forEach((it,i)=>{if(!it.sec&&!it.k)it.k="i"+i;});
+    if(s.def!==undefined)s.items.forEach(it=>{if(!it.sec)ans[s.id][it.k]=0;});
   }
+});
+function sumItems(s){
+  let sum=0,n=0,N=0;
+  s.items.forEach(it=>{
+    if(it.sec||it.nosc)return; N++;
+    const a=ans[s.id][it.k];
+    if(a!==undefined){sum+=it.o[a][1];n++;}
+  });
+  return {sum,n,N};
+}
 
-  function esc(s){return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
+/* ---------- Costruzione interfaccia ---------- */
+const nav=$("#nav"), main=$("#main");
+[["s","Chirurgia e multidisciplinare"],["a","Anestesia"]].forEach(([g,t])=>{
+  const d=document.createElement("div"); d.className="grp";
+  d.innerHTML=`<span class="gt">${t}</span>`;
+  SC.filter(s=>s.g===g).forEach(s=>d.insertAdjacentHTML("beforeend",
+    `<button type="button" class="nv" data-id="${s.id}"><span class="dot" data-l="na"></span><span class="nm">${s.name}</span><span class="ns"></span></button>`));
+  nav.appendChild(d);
+});
+nav.insertAdjacentHTML("beforeend",`<div class="grp"><span class="gt">Insieme</span><button type="button" class="nv" data-id="summary"><span class="dot" data-l="info"></span><span class="nm">Riepilogo</span></button></div>`);
 
-  var lastText='';
+const barHTML=`<div class="bar" data-l="na"><div class="bn"><span class="bl"></span><span class="bv"></span></div><p class="bt"></p></div>`;
 
-  function render(){
-    var c = ctx();
-    $('glpbox').hidden = !sel.glp1;
+SC.forEach(s=>{
+  const v=document.createElement("section");
+  v.className="view"; v.id="v-"+s.id; v.hidden=true;
+  v.innerHTML=`<h2>${s.name}</h2><p class="sub">${s.sub}</p><p class="intro">${s.intro}</p><form class="q" data-id="${s.id}" onsubmit="return false"></form>${barHTML}`;
+  const f=$("form",v);
+  if(s.custom)buildNSQIP(f,s); else buildItems(f,s);
+  main.appendChild(v);
+});
+const sv=document.createElement("section"); sv.className="view"; sv.id="v-summary"; sv.hidden=true; main.appendChild(sv);
 
-    // percorso
-    var riskTxt = {1:'basso (<1%)',2:'intermedio (1–5%)',3:'alto (>5%)'}[c.risk];
-    var major = c.risk===1 ? 'chirurgia minore' : 'chirurgia maggiore';
-    var test = c.risk===3 ? 'ECG e biomarcatori se età ≥45; valutare test cardiaci solo se cambiano la gestione.' : 'Nessun test cardiaco di routine.';
-    var urgTxt = c.urg==='elective' ? 'Intervento elettivo: tempo per ottimizzazione e revisione farmaci.' :
-                 c.urg==='timesens' ? 'Indifferibile: decisione multidisciplinare tra ottimizzazione e ritardo.' :
-                 'Urgente/emergenza: nessuna ottimizzazione che ritardi l\'intervento; gestire i farmaci con precauzioni anestesiologiche (stomaco pieno con GLP-1 RA, rischio ipotensione con RAAS).';
-    var older = c.age>=65;
-    var highDel = older && (c.frail || c.cogn || c.age>=80);
-    var n = Object.keys(sel).length;
-    var poly = n>=5;
-    var steps = [
-      {t:'Urgenza', p:urgTxt, alert:c.urg==='urgent'},
-      {t:'Rischio chirurgico ESC: '+riskTxt+' ('+major+')', p:esc(c.proc)+'. '+test, alert:c.risk===3},
-      {t:'Profilo geriatrico', p: !older ? 'Età <65: applicare comunque la tabella farmaci.' :
-          (highDel ? 'Rischio alto di delirium: screening cognitivo (Mini-Cog/MoCA) e fragilità, pacchetto di evitamento dei farmaci Beers, prevenzione non farmacologica.' :
-                     'Età ≥65: valutare fragilità e stato cognitivo prima dell\'intervento.') + (poly?' Politerapia (≥5 farmaci selezionati): revisione STOPP/START.':'') + (c.egfr!==null && c.egfr<60 ? ' eGFR ridotta: attenzione a metformina, litio, gabapentin, FANS.' : ''), alert:highDel},
-      {t:'Riconciliazione farmaci', p: n ? 'Vedi il piano farmaci sotto.' : 'Seleziona i farmaci assunti per ottenere il piano.', alert:false}
-    ];
-    $('path').innerHTML = steps.map(function(s,i){
-      return '<div class="step'+(s.alert?' alert':'')+'"><div class="n">'+(i+1)+'</div><div><b>'+s.t+'</b><p>'+s.p+'</p></div></div>';
-    }).join('');
+function buildItems(f,s){
+  s.items.forEach(it=>{
+    if(it.sec){f.insertAdjacentHTML("beforeend",`<h3 class="sec">${it.sec}</h3>`);return;}
+    const col=it.o.some(o=>o[2])||it.o.length>3||it.o.some(o=>o[0].length>30);
+    const row=s.row&&!col&&!it.h;
+    const cur=ans[s.id][it.k];
+    const gid=`${s.id}-${it.k}`;
+    const opts=it.o.map((o,j)=>`<label class="o"><input type="radio" name="${s.id}|${it.k}" value="${j}"${cur===j?" checked":""}><span>${o[0]}${o[2]?`<small>${o[2]}</small>`:""}</span></label>`).join("");
+    f.insertAdjacentHTML("beforeend",`<div class="qi${row?" row":""}" role="radiogroup" aria-labelledby="${gid}"><p class="qt" id="${gid}">${it.t}</p>${it.h?`<p class="hint">${it.h}</p>`:""}<div class="opts${col?" col":""}">${opts}</div></div>`);
+  });
+}
+function buildNSQIP(f,s){
+  const fld=x=>{
+    if(x.o)return `<label>${x.t}<select data-k="${x.k}"><option value="">Seleziona</option>${x.o.map(o=>`<option value="${o}">${o}</option>`).join("")}</select></label>`;
+    return `<label>${x.t}<input type="${x.type||"number"}" data-k="${x.k}" ${x.type==="text"?"":'inputmode="decimal" min="0"'} autocomplete="off"></label>`;
+  };
+  f.innerHTML=`<div class="grid2">${NS_FIELDS.map(fld).join("")}<div><span style="font-size:.9rem;font-weight:700">BMI calcolato</span><div class="readout" id="bmi">–</div></div></div>
+  <h3 class="sec">Risultati dal calcolatore ufficiale</h3>
+  <p class="note">Inserisci le variabili nel <a href="https://riskcalculator.facs.org/RiskCalculator/" target="_blank" rel="noopener">calcolatore ACS NSQIP</a> e riporta qui le percentuali ottenute. Il calcolatore indica anche il rischio rispetto alla media dei casi simili.</p>
+  <div class="grid2">${NS_RES.map(x=>`<label>${x.t}<input type="number" data-k="${x.k}" inputmode="decimal" min="0" autocomplete="off"></label>`).join("")}</div>`;
+}
 
-    // piano farmaci
-    var res = {stop:[],ind:[],ok:[]};
-    var flags = 0;
-    G.forEach(function(grp){grp.d.forEach(function(x){
-      if(sel[x.id]){
-        var r = x.r(c);
-        r.name = x.name;
-        if(r.f) flags++;
-        res[r.a].push(r);
-      }
-    });});
-    $('sum').innerHTML = n ? (
-      '<span class="pill stop">Sospendere: '+res.stop.length+'</span>'+
-      '<span class="pill ind">Individualizzare: '+res.ind.length+'</span>'+
-      '<span class="pill ok">Continuare: '+res.ok.length+'</span>'+
-      '<span class="pill flag">Red flag geriatrici: '+flags+'</span>') : '';
-    var titles = {stop:'Sospendere',ind:'Individualizzare',ok:'Continuare'};
-    var out='';
-    ['stop','ind','ok'].forEach(function(k){
-      if(!res[k].length) return;
-      out += '<div class="lane '+k+'"><h3>'+titles[k]+'</h3>';
-      res[k].forEach(function(r){
-        out += '<div class="drug"><h4>'+esc(r.name)+'</h4><div class="when">'+esc(r.t)+'</div><p>'+esc(r.n)+'</p>'+
-               (r.f?'<div class="rf">Red flag: '+esc(r.f)+'</div>':'')+'<span class="src">Fonte: '+esc(r.s)+'</span></div>';
-      });
-      out += '</div>';
-    });
-    $('out').innerHTML = out || '<div class="empty">Nessun farmaco selezionato. Scegli le terapie del paziente nella sezione 3.</div>';
-
-    // testo riepilogo
-    var L = ['Piano farmaci perioperatorio','Paziente: '+c.age+' anni'+(c.egfr!==null?', eGFR '+c.egfr:'')+(c.frail?', fragile':'')+(c.cogn?', deficit cognitivo':'')+(c.hf?', scompenso':''),
-             'Intervento: '+c.proc+' (rischio '+riskTxt+')',''];
-    ['stop','ind','ok'].forEach(function(k){
-      if(!res[k].length) return;
-      L.push(titles[k].toUpperCase());
-      res[k].forEach(function(r){L.push('- '+r.name+': '+r.t+(r.f?' [RED FLAG: '+r.f+']':''));});
-      L.push('');
-    });
-    L.push('Supporto decisionale: non sostituisce il giudizio clinico.');
-    lastText = L.join('\n');
+/* ---------- Logica ---------- */
+function refresh(id){
+  const s=SC.find(x=>x.id===id); const r=R[id]=s.calc(s);
+  const bar=$("#v-"+id+" .bar"); bar.dataset.l=r.lvl;
+  $(".bl",bar).textContent=r.lab;
+  const bv=$(".bv",bar); bv.textContent=r.main; bv.classList.toggle("long",String(r.main).length>6);
+  $(".bt",bar).innerHTML=`<strong>${LV[r.lvl]}.</strong> ${r.text}`;
+  const nv=$(`.nv[data-id="${id}"]`);
+  const on=touched[id]&&r.lvl!=="na";
+  $(".dot",nv).dataset.l=on?r.lvl:"na";
+  $(".ns",nv).textContent=on?r.main:"";
+}
+function handle(e){
+  const t=e.target, f=t.closest("form.q"); if(!f)return;
+  const id=f.dataset.id; touched[id]=true;
+  if(t.type==="radio")ans[id][t.name.split("|")[1]]=+t.value;
+  else if(t.dataset.k){ans[id][t.dataset.k]=t.value;}
+  if(id==="nsqip"){
+    const h=parseFloat(ans.nsqip.h),w=parseFloat(ans.nsqip.w);
+    $("#bmi").textContent=(h>0&&w>0)?fmt(w/Math.pow(h/100,2),1)+" kg/m²":"–";
   }
+  refresh(id);
+}
+main.addEventListener("input",handle);
+main.addEventListener("change",handle);
 
-  buildPicker();
-  picker.addEventListener('change',function(e){
-    var id = e.target.getAttribute('data-id');
-    if(!id) return;
-    if(e.target.checked) sel[id]=true; else delete sel[id];
-    render();
-  });
-  ['age','egfr','frail','cogn','hf','urg','proc','glphigh'].forEach(function(id){
-    $(id).addEventListener('input',render);
-    $(id).addEventListener('change',render);
-  });
-  $('q').addEventListener('input',function(){
-    var q = this.value.trim().toLowerCase();
-    var chips = picker.querySelectorAll('.chip');
-    for(var i=0;i<chips.length;i++){
-      chips[i].classList.toggle('hide', q && chips[i].getAttribute('data-name').indexOf(q)===-1);
-    }
-  });
+function show(id){
+  $$(".view").forEach(v=>v.hidden=v.id!=="v-"+id);
+  $$(".nv").forEach(b=>{b.dataset.id===id?b.setAttribute("aria-current","page"):b.removeAttribute("aria-current")});
+  if(id==="summary")renderSummary();
+  window.scrollTo(0,0);
+  try{$(`.nv[data-id="${id}"]`).scrollIntoView({inline:"center",block:"nearest"});}catch(e){}
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".nv,[data-go]"); if(b)show(b.dataset.id||b.dataset.go);
+});
 
-  function toast(m){$('toast').textContent=m;setTimeout(function(){$('toast').textContent='';},2500);}
-  $('copy').addEventListener('click',function(){
-    var done=false;
-    try{
-      var ta=$('cb'); ta.value=lastText; ta.select();
-      done=document.execCommand('copy');
-    }catch(e){}
-    if(!done && navigator.clipboard){
-      try{navigator.clipboard.writeText(lastText);done=true;}catch(e){}
-    }
-    toast(done?'Riepilogo copiato':'Copia non riuscita: seleziona il testo manualmente');
+/* ---------- Riepilogo ---------- */
+function summaryText(){
+  const pid=$("#pid").value.trim(), d=$("#pdate").value;
+  let t=`PREHABILITATION: riepilogo scale di valutazione\nPaziente: ${pid||"non indicato"}\nData: ${d||"non indicata"}\n`;
+  [["s","Chirurgia e multidisciplinare"],["a","Anestesia"]].forEach(([g,n])=>{
+    t+=`\n${n}\n`;
+    SC.filter(s=>s.g===g).forEach(s=>{
+      const r=R[s.id];
+      t+=`- ${s.name}: ${touched[s.id]?`${r.short||r.main} (${LV[r.lvl]})`:"non compilato"}\n`;
+    });
   });
-  $('print').addEventListener('click',function(){try{window.print();}catch(e){}});
-  $('theme').addEventListener('click',function(){
-    var r=document.documentElement, cur=r.getAttribute('data-theme');
-    var dark = cur ? cur==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-    r.setAttribute('data-theme', dark?'light':'dark');
+  const acts=collectActs();
+  if(acts.length)t+=`\nSpunti di intervento\n`+acts.map(a=>`- ${a}`).join("\n")+"\n";
+  return t;
+}
+function collectActs(){
+  const out=[]; SC.forEach(s=>{if(touched[s.id]&&R[s.id].act)out.push(...R[s.id].act);}); return out;
+}
+function renderSummary(){
+  const row=s=>{
+    const r=R[s.id], on=touched[s.id];
+    const l=on?r.lvl:"na";
+    return `<button type="button" class="sr" data-go="${s.id}"><span class="sn">${s.name}</span><span class="sv">${on?(r.short||r.main):"Non compilato"}</span><span class="chip" data-l="${l}"><i class="dot" data-l="${l}"></i>${on?LV[r.lvl]:"Non compilato"}</span></button>`;
+  };
+  const done=SC.filter(s=>touched[s.id]&&R[s.id].lvl!=="na").length;
+  const acts=collectActs();
+  $("#v-summary").innerHTML=`<h2>Riepilogo</h2><p class="sub">${done} scale su ${SC.length} completate. Tocca una riga per tornare alla scala.</p>
+   <h3 class="grpt">Chirurgia e multidisciplinare</h3>${SC.filter(s=>s.g==="s").map(row).join("")}
+   <h3 class="grpt">Anestesia</h3>${SC.filter(s=>s.g==="a").map(row).join("")}
+   <h3 class="grpt">Spunti di intervento</h3>
+   ${acts.length?`<ul class="acts">${acts.map(a=>`<li>${a}</li>`).join("")}</ul><p class="sub" style="margin-top:8px">Indicazioni orientative generate dai punteggi: la decisione spetta al clinico.</p>`:`<p class="sub">Nessuno spunto finora: compila le scale per vederli qui.</p>`}
+   <div class="tools"><button type="button" class="btn" id="print">Stampa o salva PDF</button><button type="button" class="btn alt" id="copy">Copia riepilogo</button><button type="button" class="btn alt danger" id="reset">Azzera tutto</button></div>
+   <textarea id="sumtxt" readonly hidden aria-label="Testo del riepilogo"></textarea>`;
+  $("#print").onclick=doPrint;
+  $("#copy").onclick=async()=>{
+    const txt=summaryText(), b=$("#copy");
+    try{await navigator.clipboard.writeText(txt); b.textContent="Copiato";setTimeout(()=>b.textContent="Copia riepilogo",1800);}
+    catch(e){const ta=$("#sumtxt"); ta.value=txt; ta.hidden=false; ta.focus(); ta.select();}
+  };
+  let armed=false;
+  $("#reset").onclick=e=>{
+    const b=e.currentTarget;
+    if(!armed){armed=true;b.textContent="Conferma azzeramento";setTimeout(()=>{armed=false;if(b.isConnected)b.textContent="Azzera tutto";},4000);return;}
+    resetAll();
+  };
+}
+function resetAll(){
+  SC.forEach(s=>{
+    ans[s.id]={}; touched[s.id]=false;
+    if(s.items&&s.def!==undefined)s.items.forEach(it=>{if(!it.sec)ans[s.id][it.k]=0;});
+    const f=$(`#v-${s.id} form`);
+    $$("input,select",f).forEach(i=>{
+      if(i.type==="radio"){const [,k]=i.name.split("|"); i.checked=(ans[s.id][k]===+i.value);}
+      else i.value="";
+    });
+    refresh(s.id);
   });
+  $("#bmi").textContent="–"; $("#pid").value="";
+  renderSummary();
+}
 
-  render();
-})();
+
+/* ---------- Stampa / PDF ---------- */
+function esc(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function buildReport(){
+  const pid=$("#pid").value.trim(), d=$("#pdate").value;
+  const dd=d?d.split("-").reverse().join("/"):"non indicata";
+  const rows=g=>SC.filter(s=>s.g===g).map(s=>{
+    const r=R[s.id], on=touched[s.id];
+    return `<tr><td><b>${esc(s.name)}</b></td><td>${on?esc(r.short||r.main):"Non compilato"}</td><td>${on?LV[r.lvl]:"Non compilato"}</td><td>${on?esc(r.text):""}</td></tr>`;
+  }).join("");
+  const acts=collectActs();
+  $("#report").innerHTML=`<h1>Prehabilitation: riepilogo scale di valutazione</h1>
+   <p class="rm">Paziente: <b>${esc(pid||"non indicato")}</b> &nbsp;&nbsp; Data valutazione: <b>${dd}</b></p>
+   <table><thead><tr><th>Scala</th><th>Risultato</th><th>Esito</th><th>Interpretazione</th></tr></thead><tbody>
+   <tr class="g"><td colspan="4">Chirurgia e multidisciplinare</td></tr>${rows("s")}
+   <tr class="g"><td colspan="4">Anestesia</td></tr>${rows("a")}</tbody></table>
+   ${acts.length?`<h2>Spunti di intervento</h2><ul>${acts.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>`:""}
+   <p class="rf">Indicazioni orientative generate dai punteggi: non sostituiscono il giudizio clinico. Documento generato il ${new Date().toLocaleString("it-IT")}.</p>`;
+}
+window.addEventListener("beforeprint",buildReport);
+function doPrint(){buildReport();try{window.print();}catch(e){}}
+
+$("#pdate").value=new Date().toLocaleDateString("sv-SE");
+SC.forEach(s=>refresh(s.id));
+show("nsqip");
 </script>
 </body>
 </html>
